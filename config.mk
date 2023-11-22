@@ -151,7 +151,8 @@ MANPAGE_FORMAT = nroff
 AR = ar
 #RANLIB = ranlib
 # IRIX, SCO don't have Ranlib:
-RANLIB =
+# Not sure of the best way to have ranlib be a no-op
+RANLIB = echo 
 
 # LEX is the beginning of a shell command that runs a Lex-like
 # pattern matcher generator.  Null string means there isn't any such
