@@ -40,11 +40,14 @@ zopen_make_check_netpbm()
 }
 
 #
-# This is interactive so need to fix
+# For now, only copy over what we need
+# Later we can run ./installnetpbm to install everything
+# (but it is interactive)
 #
-zopen_make_install_netpbm()
+zopen_install_netpbm()
 {
-  ./installnetpbm
+  mkdir -p "${ZOPEN_INSTALL_DIR}/bin/"
+  cp "${ZOPEN_ROOT}/netpbm/pkg/bin/xpmtoppm" "${ZOPEN_INSTALL_DIR}/bin/"
 }
 
 # Test summary:
@@ -72,7 +75,5 @@ zopen_check_results()
 
 zopen_get_version()
 {
-  # Modify to echo the version of your tool/library
-  # Rather than hardcoding the version, obtain the version by running the tool/library
-  echo "1.0.0"
+  pkg/bin/xpmtoppm --version 2>&1 | head -1 | awk ' { print $8; }'
 }
