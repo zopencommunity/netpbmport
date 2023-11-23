@@ -46,8 +46,13 @@ zopen_make_check_netpbm()
 #
 zopen_install_netpbm()
 {
+  tools='pnm* xpmtoppm'
   mkdir -p "${ZOPEN_INSTALL_DIR}/bin/"
-  cp "${ZOPEN_ROOT}/netpbm/pkg/bin/xpmtoppm" "${ZOPEN_INSTALL_DIR}/bin/"
+  for toolset in $tools; do
+    for tool in ${ZOPEN_ROOT}/netpbm/pkg/bin/${toolset}; do
+      cp "${tool}" "${ZOPEN_INSTALL_DIR}/bin/"
+    done
+  done
 }
 
 # Test summary:
