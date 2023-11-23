@@ -675,7 +675,7 @@ DEFAULT_TARGET = nonmerge
 NETPBMLIBTYPE=unixstatic
 NETPBMLIBSUFFIX=a
 STATICLIB_TOO=N
-CFLAGS = -O3 -ffast-math -DM_PI=3.1415926535 -pedantic -fno-common -Wall -Wno-uninitialized -Wmissing-declarations -Wimplicit -Wwrite-strings -Wmissing-prototypes -Wundef -Wno-unknown-pragmas -fzos-le-char-mode=ascii -I/home/fultonm/zopen/dev/netpbmport/include
+CFLAGS = -O3 -ffast-math -DM_PI=3.1415926535 -pedantic -fno-common -Wall -Wno-uninitialized -Wmissing-declarations -Wimplicit -Wwrite-strings -Wmissing-prototypes -Wundef -Wno-unknown-pragmas -fzos-le-char-mode=ascii -I${ZOPEN_ROOT}/include
 CFLAGS_MERGE = -Wno-missing-declarations -Wno-missing-prototypes
 LDRELOC = ld --reloc
 LINKER_CAN_DO_EXPLICIT_LIBRARY=Y

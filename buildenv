@@ -1,15 +1,24 @@
 export ZOPEN_STABLE_URL="git@github.com:jwilk-mirrors/netpbm.git"
-export ZOPEN_STABLE_DEPS="make perl coreutils diffutils findutils zlib"
+export ZOPEN_STABLE_DEPS="make perl coreutils diffutils findutils zlib flex bison m4 zoslib pkgconfig gettext"
 export ZOPEN_BUILD_LINE="STABLE"
 export ZOPEN_RUNTIME_DEPS="perl"
 export ZOPEN_CATEGORIES="core"
 
-export ZOPEN_CONFIGURE='cp'
-export ZOPEN_CONFIGURE_OPTS='../config.mk .'
+export ZOPEN_CONFIGURE='zopen_configure_netpbm'
+export ZOPEN_CONFIGURE_OPTS=''
 export ZOPEN_CONFIGURE_MINIMAL=1
 export ZOPEN_MAKE_OPTS=''
 export ZOPEN_MAKE_MINIMAL=1
 export ZOPEN_COMP='clang'
+
+zopen_configure_netpbm()
+{
+  #
+  # Use envsubst (from gettext) to substitute
+  # environment variables in the config file
+  #
+  envsubst <../config.mk >./config.mk
+}
 
 zopen_check_results()
 {
