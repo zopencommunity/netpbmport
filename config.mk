@@ -555,11 +555,11 @@ DONT_HAVE_PROCESS_MGMT = N
 
 # This is where everything goes when you do 'make package', unless you
 # override it by setting 'pkgdir' on the Make command line.
-PKGDIR_DEFAULT = /tmp/netpbm
+PKGDIR_DEFAULT = ${ZOPEN_ROOT}/netpbm/pkg
 
 # This is where test results are written when you do 'make check', unless
 # you override it by setting 'resultdir' on the Make command line.
-RESULTDIR_DEFAULT = /tmp/netpbm-test
+RESULTDIR_DEFAULT = ${ZOPEN_ROOT}/netpbm/netpbm-test
 
 # Subdirectory of the package directory ($(pkgdir)) in which man pages
 # go.

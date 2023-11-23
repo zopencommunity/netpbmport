@@ -1,0 +1,10 @@
+diff --git a/test/Execute-Tests b/test/Execute-Tests
+index 3c231d98..af110c78 100755
+--- a/test/Execute-Tests
++++ b/test/Execute-Tests
+@@ -1,4 +1,4 @@
+-#! /bin/bash
++#!/bin/env bash
+ 
+ # See if PBM_TEST_PATH is set.
+ # PBM_TEST_PATH is the list of directories with the Netpbm programs

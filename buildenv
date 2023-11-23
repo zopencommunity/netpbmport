@@ -1,14 +1,16 @@
 export ZOPEN_STABLE_URL="git@github.com:jwilk-mirrors/netpbm.git"
-export ZOPEN_STABLE_DEPS="make perl coreutils diffutils findutils zlib flex bison m4 zoslib pkgconfig gettext"
+export ZOPEN_STABLE_DEPS="make perl coreutils diffutils findutils zlib flex bison m4 zoslib pkgconfig bash gettext"
 export ZOPEN_BUILD_LINE="STABLE"
 export ZOPEN_RUNTIME_DEPS="perl"
 export ZOPEN_CATEGORIES="core"
 
 export ZOPEN_CONFIGURE='zopen_configure_netpbm'
 export ZOPEN_CONFIGURE_OPTS=''
-export ZOPEN_CONFIGURE_MINIMAL=1
+export ZOPEN_MAKE='zopen_make_netpbm'
 export ZOPEN_MAKE_OPTS=''
-export ZOPEN_MAKE_MINIMAL=1
+export ZOPEN_MAKE_CHECK='zopen_make_check_netpbm'
+export ZOPEN_MAKE_CHECK_OPTS=''
+export ZOPEN_INSTALL='zopen_install_netpbm'
 export ZOPEN_COMP='clang'
 
 zopen_configure_netpbm()
@@ -20,17 +22,52 @@ zopen_configure_netpbm()
   envsubst <../config.mk >./config.mk
 }
 
+zopen_make_netpbm()
+{
+  # Delete the old package - it will not overwrite an existing package
+  rm -rf "${ZOPEN_ROOT}/netpbm/pkg"
+  make && make package
+}
+
+zopen_make_check_netpbm()
+{
+  make check
+}
+
+zopen_make_check_netpbm()
+{
+  make install
+}
+
+#
+# This is interactive so need to fix
+#
+zopen_make_install_netpbm()
+{
+  ./installnetpbm
+}
+
+# Test summary:
+#==================
+#SUCCESS 29
+#FAILURE 179
+#NOT TESTABLE 9
+#TOTAL TESTABLE 208
+#==================
+
 zopen_check_results()
 {
   dir="$1"
   pfx="$2"
   chk="$1/$2_check.log"
 
-  # Echo the following information to gauge build health
-  echo "actualFailures:0"
-  echo "totalTests:1"
-  echo "expectedFailures:0"
-  echo "expectedTotalTests:1"
+  success=$(egrep '^SUCCESS ' "${chk}" | awk ' { print $2; }')
+  failure=$(egrep '^FAILURE ' "${chk}" | awk ' { print $2; }')
+  total=$(egrep '^TOTAL ' "${chk}" | awk ' { print $3; }')
+  echo "actualFailures:${failure}"
+  echo "totalTests:${total}"
+  echo "expectedFailures:179"
+  echo "expectedTotalTests:208"
 }
 
 zopen_get_version()
