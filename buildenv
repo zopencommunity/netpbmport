@@ -1,3 +1,6 @@
+# bump: netpbm-version /NETPBM_VERSION="(.*)"/ https://github.com/jwilk-mirrors/netpbm.git|semver:*
+NETPBM_VERSION="11.04.00"
+
 export ZOPEN_STABLE_URL="git@github.com:jwilk-mirrors/netpbm.git"
 export ZOPEN_STABLE_DEPS="make perl coreutils diffutils findutils zlib flex bison m4 zoslib pkgconfig bash gettext"
 export ZOPEN_BUILD_LINE="STABLE"
